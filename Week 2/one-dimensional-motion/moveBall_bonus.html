@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Simulation - ball movement</title>
+</head>
+
+<body>
+  <div id="ball1" style="
+  z-index:5;
+  position:absolute;
+  left:0px;
+  top:0px;
+  width:50px;
+  height:50px;
+  border-radius:50%;
+  opacity: 0.7;
+  background:green"></div>
+
+  <div id="ball2" style="
+  z-index:4;
+  position:absolute;
+  left:0px;
+  top:0px;
+  width:40px;
+  height:40px;
+  border-radius:50%;
+  opacity: 0.7;
+  background:yellowgreen"></div>
+
+  <div id="ball3" style="
+  z-index:3;
+  position:absolute;
+  left:0px;
+  top:0px;
+  width:30px;
+  height:30px;
+  border-radius:50%;
+  opacity: 0.7;
+  background:yellow"></div>
+
+  <script>
+    var ball1 = document.getElementById('ball1');
+    var ball2 = document.getElementById('ball2');
+    var ball3 = document.getElementById('ball3');
+    var velocity = 2;
+    var positionX = 0;
+    var positionY = 0;
+    var reverse = false;
+
+    function moveBall(ball) {
+      var Xmin = 0;
+      var Xmax = 300;
+      var Ymin = 0;
+      var Ymax = 300;
+      if (reverse === false) {
+        positionX += velocity;
+        positionY += velocity;
+      }
+      else {
+        positionX -= velocity;
+        positionY -= velocity;
+      }
+      if (positionX > Xmax || positionX === Xmin || positionY > Ymax || positionY === Ymin) {
+        reverse = !reverse;
+      }
+      console.log('ball', ball.style.left);
+      ball.style.left = positionX + "px";
+      ball.style.top = positionY + "px";
+    }
+
+    // This call the moveBall function every 100ms
+    setInterval(() => { moveBall(ball1) }, 100);
+    setInterval(() => { moveBall(ball2) }, 500);
+    setInterval(() => { moveBall(ball3) }, 1000);
+
+  </script>
+</body>
+
+</html>
